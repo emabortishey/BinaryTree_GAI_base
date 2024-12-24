@@ -226,3 +226,38 @@ BinaryTree::~BinaryTree() {
     remove(root);
 }
 
+
+
+void Node::print_All()
+{
+    violation_list* buff = violations;
+    int count = 1;
+
+    if (buff->next == nullptr)
+    {
+        cout << "\nНарушение №" << count << ": " << buff->violation;
+        count++;
+    }
+    else
+    {
+        while (buff != nullptr)
+        {
+            cout << "\nНарушение №" << count << ": " << buff->violation;
+            count++;
+            buff = buff->next;
+        }
+    }
+}
+
+void Node::add_viol(string viol)
+{
+    violation_list* buff = violations;
+    violation_list* new_viol = new violation_list{ viol };
+
+    while (buff->next != nullptr)
+    {
+        buff = buff->next;
+    }
+
+    buff->next = new_viol;
+}

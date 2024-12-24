@@ -26,39 +26,9 @@ public:
     explicit Node(int key_P) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list() ) {}
     Node(int key_P, string viol) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list(viol) ) {}
 
-    void print_All()
-    {
-        violation_list* buff = violations;
-        int count = 1;
+    void print_All();
 
-        if (buff->next == nullptr)
-        {
-            cout << "\nНарушение №" << count << ": " << buff->violation;
-            count++;
-        }
-        else
-        {
-            while (buff != nullptr)
-            {
-                cout << "\nНарушение №" << count << ": " << buff->violation;
-                count++;
-                buff = buff->next;
-            }
-        }
-    }
-
-    void add_viol(string viol)
-    {
-        violation_list* buff = violations;
-        violation_list* new_viol = new violation_list{ viol };
-
-        while (buff->next != nullptr)
-        {
-            buff = buff->next;
-        }
-
-        buff->next = new_viol;
-    }
+    void add_viol(string viol);
 };
 
 class BinaryTree {
