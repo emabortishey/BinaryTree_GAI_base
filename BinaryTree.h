@@ -8,11 +8,11 @@ public:
     string violation;
     violation_list* next;
 
-    violation_list() : violation{"none"}, next{nullptr} { }
-    violation_list(string viol) : violation{ viol } { }
-    violation_list(char* viol) : violation{ viol } { }
-    violation_list(string viol, violation_list* prev) : violation{ viol }, next{ prev } { }
-    violation_list(char* viol, violation_list* prev) : violation{ viol }, next{ prev } { }
+    violation_list() : violation("none"), next(nullptr) { }
+    violation_list(string viol) : violation( viol ) { }
+    violation_list(char* viol) : violation( viol ) { }
+    violation_list(string viol, violation_list* prev) : violation( viol ), next( prev ) { }
+    violation_list(char* viol, violation_list* prev) : violation( viol ), next( prev ) { }
 };
 
 class Node {
@@ -24,8 +24,8 @@ public:
     Node* right;
     Node* parent;
 
-    Node(int key_P) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations{ new violation_list{} } {}
-    Node(int key_P, char* viol) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations{ new violation_list{viol} } {}
+    Node(int key_P) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list() ) {}
+    Node(int key_P, char* viol) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list(viol) ) {}
 
     void print_All()
     {
@@ -71,6 +71,10 @@ public:
     Node* search(Node* node, int key) const;
 
     void print(Node* node) const;
+
+    void print_range(Node* node, int left, int right);
+
+    void print_indx(int num);
 
     void insert(int value);
 

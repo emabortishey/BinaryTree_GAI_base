@@ -93,6 +93,31 @@ void BinaryTree::print(Node* node) const
 
 }
 
+void BinaryTree::print_range(Node* node, int left, int right)
+{
+    if (!node) return;
+
+    if (left <= node->key && node->key <= right)
+    {
+        cout << "\nНомер машины: " << node->key << " ";
+        node->print_All();
+        cout << "\n\n";
+    }
+
+    print_range(node->left, left, right);
+    print_range(node->right, left, right);
+
+}
+
+void BinaryTree::print_indx(int num)
+{
+    Node* node = search(root, num);
+
+    cout << "\nНомер машины: " << node->key << " ";
+    node->print_All();
+    cout << "\n\n";
+}
+
 void BinaryTree::insert(int value)
 {
     Node* newNode = new Node(value);

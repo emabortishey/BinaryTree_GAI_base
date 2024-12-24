@@ -20,6 +20,10 @@ int main()
     Node* root = tree.getRoot();
     cout << "Минимум: " << tree.min(root)->key << "\n";
     cout << "Максимум: " << tree.max(root)->key << "\n";
+    
+    tree.print_indx(5);
+    
+    /*
 
     Node* searchNode = tree.search(root, 10);
     if (searchNode) {
@@ -31,7 +35,7 @@ int main()
     tree.remove_tree(searchNode);
 
     cout << "\n\nДерево после удаления: ";
-    tree.print(tree.getRoot());
+    tree.print(tree.getRoot());*/
 
 	return 0;
 }
