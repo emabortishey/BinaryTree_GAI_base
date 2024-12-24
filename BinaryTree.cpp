@@ -118,35 +118,48 @@ void BinaryTree::print_indx(int num)
     cout << "\n\n";
 }
 
-void BinaryTree::insert(int value)
+void BinaryTree::insert(int value, string viol)
 {
-    Node* newNode = new Node(value);
-    Node* current = root;
-    Node* parent = nullptr;
+    try {
+        if (search(root, value))
+        {
+            throw KeyAlreadyExists("\n\nКлюч который вы пытаетесь записать уже существует.\n\n");
+        }
+        Node* newNode = new Node(value, viol);
+        Node* current = root;
+        Node* parent = nullptr;
 
-    if (!root) {
-        root = newNode;
-        return;
-    }
+        if (!root) {
+            root = newNode;
 
-    while (current) {
-        parent = current;
+            return;
+        }
 
-        if (value < current->key) {
-            current = current->left;
+        while (current) {
+            parent = current;
+
+            if (value < current->key) {
+                current = current->left;
+            }
+            else {
+                current = current->right;
+            }
+        }
+
+        newNode->parent = parent;
+
+        if (value < parent->key) {
+            parent->left = newNode;
         }
         else {
-            current = current->right;
+            parent->right = newNode;
         }
     }
+    catch (KeyAlreadyExists& obj)
+    {
+        cout << obj.what();
 
-    newNode->parent = parent;
-
-    if (value < parent->key) {
-        parent->left = newNode;
-    }
-    else {
-        parent->right = newNode;
+        search(root, value)->add_viol(viol);
     }
 }
 
@@ -212,3 +225,4 @@ void BinaryTree::remove_node(Node*& node)
 BinaryTree::~BinaryTree() {
     remove(root);
 }
+

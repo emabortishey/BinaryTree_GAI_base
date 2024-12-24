@@ -7,11 +7,13 @@ int main()
     BinaryTree tree;
 
     // Пример работы
-    tree.insert(20);
+    tree.insert(20, "meeow");
     tree.insert(10);
     tree.insert(30);
     tree.insert(5);
     tree.insert(15);
+
+    tree.insert(20, "bark");
 
     cout << "Дерево: ";
     tree.print(tree.getRoot());
@@ -23,9 +25,7 @@ int main()
     
     tree.print_indx(5);
     
-    /*
-
-    Node* searchNode = tree.search(root, 10);
+    /* Node* searchNode = tree.search(root, 10);
     if (searchNode) {
         cout << "Следующий после 10: " << (tree.next(searchNode) ? tree.next(searchNode)->key : -1) << "\n";
         cout << "Предыдущий до 10: " << (tree.prev(searchNode) ? tree.prev(searchNode)->key : -1) << "\n";

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <exception>
 
 using namespace std;
 
@@ -9,10 +10,8 @@ public:
     violation_list* next;
 
     violation_list() : violation("none"), next(nullptr) { }
-    violation_list(string viol) : violation( viol ) { }
-    violation_list(char* viol) : violation( viol ) { }
+    explicit violation_list(string viol) : violation( viol ) { }
     violation_list(string viol, violation_list* prev) : violation( viol ), next( prev ) { }
-    violation_list(char* viol, violation_list* prev) : violation( viol ), next( prev ) { }
 };
 
 class Node {
@@ -24,8 +23,8 @@ public:
     Node* right;
     Node* parent;
 
-    Node(int key_P) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list() ) {}
-    Node(int key_P, char* viol) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list(viol) ) {}
+    explicit Node(int key_P) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list() ) {}
+    Node(int key_P, string viol) : key(key_P), left(nullptr), right(nullptr), parent(nullptr), violations( new violation_list(viol) ) {}
 
     void print_All()
     {
@@ -39,13 +38,26 @@ public:
         }
         else
         {
-            while (buff->next != nullptr)
+            while (buff != nullptr)
             {
                 cout << "\nНарушение №" << count << ": " << buff->violation;
                 count++;
                 buff = buff->next;
             }
         }
+    }
+
+    void add_viol(string viol)
+    {
+        violation_list* buff = violations;
+        violation_list* new_viol = new violation_list{ viol };
+
+        while (buff->next != nullptr)
+        {
+            buff = buff->next;
+        }
+
+        buff->next = new_viol;
     }
 };
 
@@ -76,11 +88,23 @@ public:
 
     void print_indx(int num);
 
-    void insert(int value);
+    void insert(int value, string viol = "none");
 
     void remove_tree(Node* node);
 
     void remove_node(Node*& node);
 
     ~BinaryTree();
+};
+
+class KeyAlreadyExists : public exception
+{
+    const char* error;
+public:
+    KeyAlreadyExists(const char* text) : error{ text } { };
+
+    virtual const char* what() const noexcept override final
+    {
+        return error;
+    }
 };
