@@ -85,9 +85,12 @@ void BinaryTree::print(Node* node) const
 
     print(node->left);
 
-    cout << node->key << " ";
+    cout << "\nНомер машины: " << node->key << " ";
+    node->print_All();
+    cout << "\n\n";
 
     print(node->right);
+
 }
 
 void BinaryTree::insert(int value)
