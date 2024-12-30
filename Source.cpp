@@ -7,15 +7,20 @@ int main()
     BinaryTree tree;
 
     // Пример работы
+    // заполнение с помощью инсертов
     tree.insert(20, "meeow");
     tree.insert(10);
     tree.insert(30);
     tree.insert(5);
     tree.insert(15);
 
+    // попытка вставить уже существующий ключ после которой выводится сообщение выброшенное исключением
     tree.insert(20, "bark");
 
-    cout << "Дерево: ";
+    // проверка методов заданных заданием и плюс некоторых чисто
+    // чтобы проверить правильно ли написанны базовые методы класса дерева
+
+    cout << "Распечатка всей базы данных: ";
     tree.print(tree.getRoot());
     cout << "\n";
 
@@ -23,8 +28,17 @@ int main()
     cout << "Минимум: " << tree.min(root)->key << "\n";
     cout << "Максимум: " << tree.max(root)->key << "\n";
     
-    tree.print_indx(5);
-    
+    cout << "\n\nВывод по ключу 5: \n\n";
+
+    tree.print_key(5);
+
+    cout << "\n\nВывод в диапазоне ключей 5 - 16: \n\n";
+
+    tree.print_range(root, 5, 16);
+
+
+    // я не помню что это но на всякий пусть будет
+
     /* Node* searchNode = tree.search(root, 10);
     if (searchNode) {
         cout << "Следующий после 10: " << (tree.next(searchNode) ? tree.next(searchNode)->key : -1) << "\n";
