@@ -40,7 +40,7 @@ public:
     Node(int key_P, string viol) : key{ key_P }, violations{ new violation_list{viol} }, left(nullptr), right(nullptr), parent(nullptr) { }
 
     // вывод всех нарушений 
-    void print_All();
+    void print_All() const;
 
     // добавление нарушения к существующему ключу
     void add_viol(string viol);
@@ -73,10 +73,10 @@ public:
     void print(Node* node) const;
 
     // вывод в диапазоне
-    void print_range(Node* node, int left, int right);
+    void print_range(Node* node, int left, int right) const;
 
     // вывод определенного элемента по клбчу
-    void print_key(int num);
+    void print_key(int num) const;
 
     /////// КОНЕЦ МЕТОДОВ ОГЛАШЕННЫХ ЗАДАНИЕМ \\\\\\\
 

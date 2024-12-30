@@ -154,7 +154,7 @@ void BinaryTree::print(Node* node) const
 
 }
 
-void BinaryTree::print_range(Node* node, int left, int right)
+void BinaryTree::print_range(Node* node, int left, int right) const
 {
     if (!node) return;
 
@@ -174,7 +174,7 @@ void BinaryTree::print_range(Node* node, int left, int right)
     print_range(node->right, left, right);
 }
 
-void BinaryTree::print_key(int num)
+void BinaryTree::print_key(int num) const
 {
     // основная причина по которой в методе поиска 
     // значение не константное это то, что я использую
@@ -343,7 +343,7 @@ BinaryTree::~BinaryTree() {
 
 
 // метод из нода, который выводит все нарушения по списку
-void Node::print_All()
+void Node::print_All() const
 {
     // буфер для пробега по элементам
     violation_list* buff = violations;
